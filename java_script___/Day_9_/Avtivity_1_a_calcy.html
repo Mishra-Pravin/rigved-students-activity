@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        div {
+            /* border: 3px solid rgb(51, 18, 18); */
+            padding: 25px;
+            width: 300px;
+            margin: 40px auto;
+
+        }
+        body{
+            background-color: gray;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Javascript Activity</h1>
+        <hr>
+        <h2>Simple Calculator</h2>
+        <script>
+            function addFunction() {
+                var y = parseInt(document.getElementById("txt1").value);
+                var z = parseInt(document.getElementById("txt2").value);
+                var x = y + z;
+                document.getElementById("result").value = x;
+            }
+            function subtractFunction() {
+                var y = parseInt(document.getElementById("txt1").value);
+                var z = parseInt(document.getElementById("txt2").value);
+                var x = y - z;
+                document.getElementById("result").value = x;
+            }
+            function multiFunction() {
+                var y = parseInt(document.getElementById("txt1").value);
+                var z = parseInt(document.getElementById("txt2").value);
+                var x = y * z;
+                document.getElementById("result").value = x;
+            }
+            function divideFunction() {
+                var y = parseInt(document.getElementById("txt1").value);
+                var z = parseInt(document.getElementById("txt2").value);
+                var x = y / z;
+                document.getElementById("result").value = x;
+            }
+        </script>
+        <p>
+            <label>Enter First Number : </label><br>
+            <input type="number" id="txt1" name="text1" autocomplete="off"><br />
+            <label>Enter Second Number : </label><br>
+            <input type="number" id="txt2" name="text2"  autocomplete="off">
+            <br>
+            <label for="number">Result : <br>
+                <input type="number" id="result" name="text3"  autocomplete="off"></label>
+
+        </p>
+        <p>
+            <button onclick="addFunction()">Add</button>
+            <button onclick="subtractFunction()">Subtract</button>
+            <button onclick="multiFunction()">Multiply</button>
+            <button onclick="divideFunction()">Divide</button>
+            <br>
+    </div>
+
+</body>
+
+</html>
