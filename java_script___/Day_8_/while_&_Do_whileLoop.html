@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: rgb(83, 145, 187);
+        }
+    </style>
+</head>
+<body>
+    <h3 align="center">1.Using (DO-WHILE)loop & conditional branches print only the odd numbers from 1 to 10</h3>
+    
+
+     <script type="text/javascript">
+         var OddNumber=10;
+         document.write("List of Odd Numbers from 1 to "+OddNumber+".<br>");
+         var i=0;
+         do{
+            if(i%2!=0){
+                document.write(i+",");
+            
+            }
+            i++;
+        }
+        while(i<=OddNumber);
+        document.write(".<br>");
+
+     </script>
+    
+    <h3 align="center">2.Using (WHILE) loop & conditional branches print only the even numbers from 1 to 10</h3>
+    <script type="text/javascript">
+       var EvenNumber=10;
+       document.write("List of Even Numbers from 1 to "+EvenNumber+".<br>");
+       var i=0;
+      while(i<=EvenNumber){
+          
+          if(i%2==0){
+              document.write(i+",");
+          }
+          i++;
+      }
+      document.write(".<br>")
+
+   </script>
+    
+</body>
+</html>

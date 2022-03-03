@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        form{
+            /* border: 3px solid rgb(51, 18, 18); */
+            padding: 25px;
+            width: 400px;
+            margin: 30px auto;
+
+        }
+        /* td{
+            padding:5px;
+        } */
+        td:first-child{
+            text-align:right;
+            padding: 5px;
+        }
+      
+    </style>
+    <!--  -->
+    <script>
+        function validate(){
+            var fname= document.vali_dation.fname;
+            var lname= document.vali_dation.lname;
+            var Password= document.vali_dation.Password;
+            var Confirm_Password= document.vali_dation.Confirm_Password;
+            var gender= document.vali_dation.gender;
+            var skills= document.vali_dation.skills;
+            // console.log()
+
+            // var name= document.vali_dation.name;
+            // var name= document.vali_dation.name;
+            // var name= document.vali_dation.name;
+            // 
+            if(fname.value.length <=3){
+                alert("Firstname must be morethan 3 characters");
+                name.focus();
+                return false;
+
+            }
+            // 
+            if(lname.value.length <=2){
+                alert("Last name must be more than 1 characters.");
+                lastname.focus();
+                return false;
+
+            }
+            if(Password.value.length <=3){
+                alert("Password must be more than 3 characters.");
+                Password.focus();
+                return false;
+
+            }
+            // 
+            if(Password.value != Confirm_Password.value){
+                alert("Password must be Match with confirm Password.");
+                Confirm_Password.focus();
+                // return false;
+
+            }
+            if(gender.value.length<=0){
+                alert("Gender Selection Required");
+                Confirm_Password.focus();
+                return false;
+
+            }
+            if(skills.value.length<=0){
+                alert("Skills Selection Required");
+                skills.focus();
+                return false;
+
+            }
+            return true;
+            
+        }
+
+    </script>
+
+
+</head>
+<body>
+    <h1 align="center">Validation Form</h1>
+    <hr>
+    <form method="post" action="Form_Validation_javascrip.html" name="vali_dation" onsubmit="return validate()" >
+        <h2 align="center">Form</h2>
+    <table>
+        <tr>
+            <td>
+                <label >First Name </label>
+            </td>
+            <td>
+                <input type="text" name="fname" autocomplete="off" >
+
+            </td>
+        </tr>
+        <!--  -->
+        <tr>
+            <td>
+                <label >Last name</label>
+            </td>
+            <td>
+                <input type="text" name="lname" autocomplete="off" >
+
+            </td>
+        </tr>
+        <!--  -->
+        <tr>
+            <td>
+                <label >Password</label>
+            </td>
+            <td>
+                <input type="password" name="Password" autocomplete="off" >
+
+            </td>
+        </tr>
+        <!--  -->
+        <tr>
+            <td>
+                <label >Confirm Password</label>
+            </td>
+            <td>
+                <input type="password" name="Confirm_Password" autocomplete="off" >
+
+            </td>
+        </tr>
+
+        <!--  -->
+        <tr>
+            <td>
+                <label >Gender</label>
+            </td>
+            <td>
+                <input type="radio" name="gender" autocomplete="off" value="Male">Male
+                <input type="radio" name="gender" autocomplete="off" value="Female">Female
+
+
+            </td>
+        </tr>
+        <!--  -->
+        <tr>
+            <td>
+                <label >Skills</label>
+            </td>
+            <td>
+                <input type="radio" name="skills" autocomplete="off" value="JS">JS
+                <input type="radio" name="skills" autocomplete="off" value="Python">Python
+                <input type="radio" name="skills" autocomplete="off" value="C">C
+
+
+            </td>
+        </tr>
+        <!--  -->
+        <tr>
+           
+            <td colspan="2" align="center" style="position: relative; left: -45px;">
+                <input type="submit" name="submit" value="Submit" >
+                <input type="reset" name="reset" value="Reset" >
+
+            </td>
+        </tr>
+    </table>
+</form>
+
+        
+</body>
+</html>
