@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricketrs Data</title>
+    <style>
+        body {
+    text-align: center;
+    background-color: gray;
+}
+div {
+    display: inline-block;
+}
+button {
+    display: inline-block;
+    padding: 10px 20px;
+}
+#table {
+    display: block;
+    margin-top: 20px;
+}
+th, td {
+    border: 1px solid black;
+    padding: 5px;
+}
+    </style>
+</head>
+<body>
+    
+    <div>
+        <button>Click</button>
+        <div id="table"></div>
+    </div>
+    <script>
+        let btnGet = document.querySelector('button');
+let myTable = document.querySelector('#table');
+
+
+let employees = [
+    {customerid:12345,fname:'Sachin',lname:'Tendulkar',state:'Maharastra',city:'Mumbai'},
+    { customerid:28845,fname:'Rahul',lname:'Dravid',state:'Karnataka',city:'Banglore' },
+    { customerid:42446,fname:'Rohit',lname:'Sharma',state:'Maharastra',city:'Pune' }
+  
+]
+
+let headers = ['Customer Id', 'Fullname', 'Lastname','State','City'];
+
+btnGet.addEventListener('click', () => {
+    let table = document.createElement('table');
+    let headerRow = document.createElement('tr');
+
+    headers.forEach(headerText => {
+        let header = document.createElement('th');
+        let textNode = document.createTextNode(headerText);
+        header.appendChild(textNode);
+        headerRow.appendChild(header);
+    });
+
+    table.appendChild(headerRow);
+
+    employees.forEach(emp => {
+        let row = document.createElement('tr');
+
+        Object.values(emp).forEach(text => {
+            let cell = document.createElement('td');
+            let textNode = document.createTextNode(text);
+            cell.appendChild(textNode);
+            row.appendChild(cell);
+        })
+
+        table.appendChild(row);
+    });
+
+    myTable.appendChild(table);
+});
+    </script>
+</body>
+</html>
