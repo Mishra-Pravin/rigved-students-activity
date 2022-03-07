@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       p{
+            color:black;
+
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h3 id="size" >Some Content</h3>
+    <button onclick="IncreaseSize()">Increase</button>
+    <button onclick="DecreaseSize()">Decrease</button>
+    <script type="text/javascript">
+        function IncreaseSize(){
+        document.getElementById("size").style.fontSize='x-large ';
+        document.getElementById("size").style.color='red';
+
+
+        }
+        function DecreaseSize(){
+        document.getElementById("size").style.fontSize='x-small';
+        document.getElementById("size").style.color='blue';
+
+
+        }
+
+    </script>
+    </center>
+   
+</body>
+</html>
