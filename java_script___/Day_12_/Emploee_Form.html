@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+<h2>Employee Form</h2>
+<p>Age:<input id="age" type="text" autocomplete="OFF">   <button type="button" onclick="EmploeeFunction()">Submit</button></p>
+<p id="demo"></p>
+<script>
+function EmploeeFunction() {
+  const message = document.getElementById("demo");
+  message.innerHTML = "";
+  let xy = document.getElementById("age").value;
+  try { 
+    if(xy == "")  throw "Enter Value";
+    if(isNaN(xy)) throw "Enter number";
+    xy = Number(xy);
+    if(xy < 18)  throw "Ghar Jaao bacche";
+    if(xy > 60)   throw "Aaram karo uncle";
+    
+  }
+  catch(err) {
+    message.innerHTML =  err;
+
+ }
+}
+</script>
+</body>
+</html>

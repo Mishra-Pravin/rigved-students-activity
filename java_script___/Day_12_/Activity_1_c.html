@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <center>
+        <Form>
+            <label>Modify Age: <input type="text" name="age" id="demo2"></label>
+            <button onclick = "editAge()">Edit</button><br>
+            <a href = "Activity_1_b.html">Get Data</a>
+        </Form>
+        <script type="text/javascript">
+                function editAge() {
+                    var age = parseInt(document.getElementById('demo2').value);
+                    sessionStorage.setItem('age', age);
+                
+            }
+        </script>
+    </center>
+   
+</body>
+</html>

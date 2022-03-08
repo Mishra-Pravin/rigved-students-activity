@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2</title>
+</head>
+<body>
+    <center>
+    <h2>Memory Value</h2>
+    <div id = 'demo1'></div>
+    <div id = 'demo2'></div>
+    <button> <a href = "Activity_1_c.html">EDIT</a></button>
+    <script type = "text/javascript">
+        var d1 = sessionStorage.getItem('user');
+        var d2 = sessionStorage.getItem('age');
+        document.getElementById('demo1').innerHTML = d1
+        document.getElementById('demo2').innerHTML = d2
+
+    </script>
+    </center>
+</body>
+</html>

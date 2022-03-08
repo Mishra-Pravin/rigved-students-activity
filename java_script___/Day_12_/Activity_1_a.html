@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>1</title>
+</head>
+<body><center>
+    <h1>Activity</h1>
+    <input type = "store" name = "n1" id = "demo1" autocomplete="off">
+    <input type = "text" name = "a1" id = "demo2" autocomplete="off">
+    <input type = "button" value = "store" onclick="data_1()"> <br />
+    <a href = "Activity_1_b.html">Get Data</a>
+    <script >
+        function data_1() {
+            
+            var input = document.getElementById('demo1').value;
+            var age = document.getElementById('demo2').value;
+            if(input.length < 1) {
+                alert("please enter some input");
+            } else {
+                sessionStorage.setItem('user', input);
+                sessionStorage.setItem('age', age);
+            }
+        }
+    </script>
+    </center>
+</body>
+</html>
