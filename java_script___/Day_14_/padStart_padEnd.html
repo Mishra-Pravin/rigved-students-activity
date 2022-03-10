@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity2</title>
+</head>
+
+<body>
+	<center>
+    <h1 style="text-align: center;">padStart and padEnd</h1>
+    <div id="i1">
+        <h3>You want code click button</h3><br>
+        <div id="i2"></div><br>
+        <button onclick="getCode()">Get Code</button>
+        <script type="text/javascript">
+
+            function get4digit() {
+                var digit = Math.round(Math.random() * 10000);
+                var digitStr = digit + "";
+
+                if (digitStr.length == 4) {
+                    return digitStr;
+                } else {
+                    return get4digit();
+                }
+
+                return digitStr;
+            }
+
+            function getCode() {
+                var code = get4digit();
+                var padCode = code.padStart(6, '0');
+                document.getElementById("i2").innerHTML = (`<h3>6 digit Code with "00" padStart is : ${padCode}</h3>`);
+            }
+        </script>
+    </div>
+</center>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+    th{ 
+        color:#fff;
+            }
+</style>
+<table class="table table-striped">
+    <tr class="bg-info">
+        <th >Name</th>
+        <th >Age</th>
+        <th>State</th>
+        <th>city</th>
+    </tr>
+    <tr>
+        <th>State</th>
+        <th>city</th>
+    </tr>
+ 
+
+    <tbody id="myTable">
+        
+    </tbody>
+</table>
+
+<script>
+	var users = 
+    [
+    {name: "Alex", age: 25, address:{city: "MUM", state: "MH" }},
+    {name: "Bruce", age: 45,},
+    {name: "Charles", age: 43, address:{city: "BLR", state: "KA" }},
+    {name: "David", age: 36,},
+    {name: "Edward", age: 41, address:{city: "CHN", state: "TN" }},
+    ]
+
+	buildTable(users)
+	function buildTable(data){
+		var table = document.getElementById('myTable')
+
+		for (var i = 0; i < data.length; i++){
+			var row = `<tr>
+							<td>${data[i].name}</td>
+							<td>${data[i].age}</td>
+							<td>${data[i].address?.state}</td>
+							<td>${data[i].address?.city}</td>
+					  </tr>`
+			table.innerHTML += row
+
+
+		}
+	}
+
+</script>
