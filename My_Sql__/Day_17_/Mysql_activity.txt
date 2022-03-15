@@ -1,0 +1,143 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.28 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2022, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database rigved_tech;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use rigved_tech;
+Database changed
+mysql> create table employee(employee_id int primary key, employee_name varchar(20) not null, employee_age int check(employee_age>=18 and employee_age<=60), email varchar(20) unique);
+Query OK, 0 rows affected (0.07 sec)
+
+mysql> select * from employee;
+Empty set (0.02 sec)
+
+mysql> insert into employee values(101, 'Tony Stark', 38, 'billionair@gmail.com');
+Query OK, 1 row affected (0.04 sec)
+
+mysql>  insert into employee values(101, 'Abdul Shaikh', 18, 'poorpeople@gmail.com');
+ERROR 1062 (23000): Duplicate entry '101' for key 'employee.PRIMARY'
+mysql> insert into employee values(102, 'Abdul Shaikh', 18, 'poorpeople@gmail.com');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from employee;
++-------------+---------------+--------------+----------------------+
+| employee_id | employee_name | employee_age | email                |
++-------------+---------------+--------------+----------------------+
+|         101 | Tony Stark    |           38 | billionair@gmail.com |
+|         102 | Abdul Shaikh  |           18 | poorpeople@gmail.com |
++-------------+---------------+--------------+----------------------+
+2 rows in set (0.00 sec)
+
+mysql>  insert into employee values(103, 'Pravin Mishra', 17, 'richpeople@gmail.com');
+ERROR 3819 (HY000): Check constraint 'employee_chk_1' is violated.
+mysql>  insert into employee values(103, 'Pravin Mishra', 23, 'richpeople@gmail.com');
+Query OK, 1 row affected (0.00 sec)
+
+mysql>  select * from employee;
++-------------+---------------+--------------+----------------------+
+| employee_id | employee_name | employee_age | email                |
++-------------+---------------+--------------+----------------------+
+|         101 | Tony Stark    |           38 | billionair@gmail.com |
+|         102 | Abdul Shaikh  |           18 | poorpeople@gmail.com |
+|         103 | Pravin Mishra |           23 | richpeople@gmail.com |
++-------------+---------------+--------------+----------------------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee add column pan varchar(20) unique;
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee add column aadhar int unique;
+Query OK, 0 rows affected (0.12 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql>  select * from employee;
++-------------+---------------+--------------+----------------------+------+--------+
+| employee_id | employee_name | employee_age | email                | pan  | aadhar |
++-------------+---------------+--------------+----------------------+------+--------+
+|         101 | Tony Stark    |           38 | billionair@gmail.com | NULL |   NULL |
+|         102 | Abdul Shaikh  |           18 | poorpeople@gmail.com | NULL |   NULL |
+|         103 | Pravin Mishra |           23 | richpeople@gmail.com | NULL |   NULL |
++-------------+---------------+--------------+----------------------+------+--------+
+3 rows in set (0.00 sec)
+
+mysql> alter table employee add constraint unique (pan);
+Query OK, 0 rows affected, 1 warning (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> alter table employee add constraint unique (aadhar);
+Query OK, 0 rows affected, 1 warning (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 1
+
+mysql> desc employee;
++---------------+-------------+------+-----+---------+-------+
+| Field         | Type        | Null | Key | Default | Extra |
++---------------+-------------+------+-----+---------+-------+
+| employee_id   | int         | NO   | PRI | NULL    |       |
+| employee_name | varchar(20) | NO   |     | NULL    |       |
+| employee_age  | int         | YES  |     | NULL    |       |
+| email         | varchar(20) | YES  | UNI | NULL    |       |
+| pan           | varchar(20) | YES  | UNI | NULL    |       |
+| aadhar        | int         | YES  | UNI | NULL    |       |
++---------------+-------------+------+-----+---------+-------+
+6 rows in set (0.01 sec)
+
+mysql> ^C
+mysql> insert into employee values(101, 'Tony Stark', 38, 'billonair@gmail.com', 'JPSZ723', 123456789332);
+ERROR 1264 (22003): Out of range value for column 'aadhar' at row 1
+mysql> insert into employee values(104, 'captain america', 59, 'oldman@gmail.com', 'JPSZ723', 123456789332);
+ERROR 1264 (22003): Out of range value for column 'aadhar' at row 1
+mysql>  insert into employee values(104, 'captain america', 59, 'oldman@gmail.com', 'JPSZ7', 12345);
+Query OK, 1 row affected (0.01 sec)
+
+mysql>  select * from employee;
++-------------+-----------------+--------------+----------------------+-------+--------+
+| employee_id | employee_name   | employee_age | email                | pan   | aadhar |
++-------------+-----------------+--------------+----------------------+-------+--------+
+|         101 | Tony Stark      |           38 | billionair@gmail.com | NULL  |   NULL |
+|         102 | Abdul Shaikh    |           18 | poorpeople@gmail.com | NULL  |   NULL |
+|         103 | Pravin Mishra   |           23 | richpeople@gmail.com | NULL  |   NULL |
+|         104 | captain america |           59 | oldman@gmail.com     | JPSZ7 |  12345 |
++-------------+-----------------+--------------+----------------------+-------+--------+
+4 rows in set (0.00 sec)
+
+mysql> alter table employee drop pan;
+Query OK, 0 rows affected (0.17 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table employee drop aadhar;
+Query OK, 0 rows affected (0.10 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from employee;
++-------------+-----------------+--------------+----------------------+
+| employee_id | employee_name   | employee_age | email                |
++-------------+-----------------+--------------+----------------------+
+|         101 | Tony Stark      |           38 | billionair@gmail.com |
+|         102 | Abdul Shaikh    |           18 | poorpeople@gmail.com |
+|         103 | Pravin Mishra   |           23 | richpeople@gmail.com |
+|         104 | captain america |           59 | oldman@gmail.com     |
++-------------+-----------------+--------------+----------------------+
+4 rows in set (0.00 sec)
+
+mysql> ^C
+mysql> drop table employee;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> showtables;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'showtables' at line 1
+mysql> show tables;
+Empty set (0.01 sec)
+
+mysql>
