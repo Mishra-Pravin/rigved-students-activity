@@ -1,0 +1,98 @@
+
+
+C:\Users\Pravin>set path=D:\Rigved Technologies\mongodb-win32-x86_64-windows-5.0.6\bin;%path%
+
+
+> show dbs;
+admin   0.000GB
+config  0.000GB
+lodb.createCollection("employees")
+{ db.employees.insertmany([{"_id ": 101 ,"name" :"batman"},{"_id":102,"name": "superman"}{"_id":103,"name": "aquaman"}]);
+        "ok" : 0,sertmany([{"_id ": 101 ,"name" :"batman"},{"_id":102,"name": "superman"}{"_id":103,"name": "aquaman"}]);
+        "errmsg" : "Collection already exists. NS: employee.employees",name": "superman"}{"_id":103,"name": "aquaman"}]);
+        "code" : 48,tmany([{"_id ": 101 ,"name" :"batman"},{"_id":102,"name": "superman"}{"_id":103,"name": "aquaman"}]);
+        "codeName" : "NamespaceExists"1 ,"name" :"batman"},{"_id":102,"name": "superman"}{"_id":103,"name": "aquaman"}])
+}
+> show collections;
+employees
+> db.collection.find();
+> db.employees.find();
+> show db;
+uncaught exception: Error: don't know how to show [db] :
+shellHelper.show@src/mongo/shell/utils.js:1211:11
+shellHelper@src/mongo/shell/utils.js:838:15
+@(shellhelp2):1:1
+> show dbs;
+admin     0.000GB
+config    0.000GB
+employee  0.000GB
+local     0.000GB
+> use employee;
+switched to db employee
+> show collection;
+uncaught exception: Error: don't know how to show [collection] :
+shellHelper.show@src/mongo/shell/utils.js:1211:11
+shellHelper@src/mongo/shell/utils.js:838:15
+@(shellhelp2):1:1
+> show collections;
+employees
+> db.employees.insertMany([
+... {_id:101,name:"Batman"},
+... {_id:102,name:"Superman",password:12345}
+... {_id:103,name:"spiderman",password:maryjane}
+... {_id:104,name:"Ironmane",password:richman}
+... ]);
+uncaught exception: SyntaxError: missing ] after element list :
+@(shell):4:0
+> db.employees.insertMany([
+... {_id:101,name:"Tony",password:1233}
+... {_id:102,name:"bruce",password:12344}
+... {_id:103,name:"hulk",password:123455}
+... ]);
+uncaught exception: SyntaxError: missing ] after element list :
+@(shell):3:0
+> db.employees.insertMany([
+... {_id:101,name:"Tony",password:123},
+... {_id:102,name:"Bruce",password:1234},
+... {_id:103,name:"Hulk",password:12345}
+... ]);
+{ "acknowledged" : true, "insertedIds" : [ 101, 102, 103 ] }
+> db.employees.find();
+{ "_id" : 101, "name" : "Tony", "password" : 123 }
+{ "_id" : 102, "name" : "Bruce", "password" : 1234 }
+{ "_id" : 103, "name" : "Hulk", "password" : 12345 }
+> db.createCollection("EMPLOYEES");
+{ "ok" : 1 }
+> db.EMPLOYEES.insertMany([
+... {_id:201,name:"Jeff",password:1221},
+... {_id:202,name:"Bill",password:131},
+... {_id:203,name:"Elon",password:141}
+... ]);
+{ "acknowledged" : true, "insertedIds" : [ 201, 202, 203 ] }
+> db.EMPLOYEES.find();
+{ "_id" : 201, "name" : "Jeff", "password" : 1221 }
+{ "_id" : 202, "name" : "Bill", "password" : 131 }
+{ "_id" : 203, "name" : "Elon", "password" : 141 }
+> db.employees.update({"_id":102},{$set:{"password":2212}});
+WriteResult({ "nMatched" : 1, "nUpserted" : 0, "nModified" : 1 })
+> db.employees.find();
+{ "_id" : 101, "name" : "Tony", "password" : 123 }
+{ "_id" : 102, "name" : "Bruce", "password" : 2212 }
+{ "_id" : 103, "name" : "Hulk", "password" : 12345 }
+> db.EMPLOYEES.find({"_id":102});
+> db.EMPLOYEES.find({"_id":202});
+{ "_id" : 202, "name" : "Bill", "password" : 131 }
+> db.employee.drop();
+false
+> db.employees.drop();
+true
+> db.employees.find();
+> db.EMPLOYEES.find():
+... ^C
+
+> db.EMPLOYEES.find();
+{ "_id" : 201, "name" : "Jeff", "password" : 1221 }
+{ "_id" : 202, "name" : "Bill", "password" : 131 }
+{ "_id" : 203, "name" : "Elon", "password" : 141 }
+>
+
