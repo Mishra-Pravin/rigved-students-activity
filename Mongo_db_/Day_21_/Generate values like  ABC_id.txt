@@ -1,0 +1,46 @@
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use mydba
+switched to db mydba
+> db.createCollection("University")
+{ "ok" : 1 }
+> show collections
+University
+> db.counters.insert(
+...    {
+...       _id: "userid",
+...       seq: 0
+...    }
+... )
+WriteResult({ "nInserted" : 1 })
+> function getNextSequence(name) {
+...    var ret = db.counters.findAndModify(
+...           {
+...             query: { _id: name },
+...             update: { $inc: { seq: 1 } },
+...             new: true
+...           }
+...    );
+...
+...    return "ABC"+ret.seq;
+... }
+> db.University.insert(
+...    {
+...      _id: getNextSequence("userid"),
+...      name: "Sarah C."
+...    }
+... )
+WriteResult({ "nInserted" : 1 })
+> db.University.insert(
+... {
+...  _id: getNextSequence("userid"),
+... name:"logan"
+... }
+... )
+WriteResult({ "nInserted" : 1 })
+> db.University.find()
+{ "_id" : "ABC1", "name" : "Sarah C." }
+{ "_id" : "ABC2", "name" : "logan" }
+>

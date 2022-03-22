@@ -1,0 +1,101 @@
+---
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+mydbp   0.000GB
+> use mydbp
+switched to db mydbp
+> db.dropDatabase
+function(writeConcern) {
+    return this._dbCommand(
+        {dropDatabase: 1, writeConcern: writeConcern ? writeConcern : _defaultWriteConcern});
+}
+> db.dropDatabase()
+{ "ok" : 1 }
+> showdbs
+uncaught exception: ReferenceError: showdbs is not defined :
+@(shell):1:1
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use activity
+switched to db activity
+> db.counters.insert(
+...    {
+...       _id: "userid",
+...       seq: 0
+...    }
+... )
+WriteResult({ "nInserted" : 1 })
+> function getNextSequence(name) {
+...    var ret = db.counters.findAndModify(
+...           {
+...             query: { _id: name },
+...             update: { $inc: { seq: 1 } },
+...             new: true
+...           }
+...    );
+...
+...    return ret.seq;
+... }
+>
+> db.activity.insert(
+... {
+... _id:getNextSequence("userid"),
+... name:"Wolverin"
+... }
+... )
+WriteResult({ "nInserted" : 1 })
+> db.activity.insert(
+... ... {
+... ... _id:getNextSequence("userid"),
+... ... name:"Deadpool"
+...  }
+...  )
+WriteResult({ "nInserted" : 1 })
+> db.activity.insert(
+... ... {
+... ... _id:getNextSequence("userid"),
+... ... name:"X_Men"
+... }
+... )
+WriteResult({ "nInserted" : 1 })
+> db.activity.find()
+{ "_id" : 1, "name" : "Wolverin" }
+{ "_id" : 2, "name" : "Deadpool" }
+{ "_id" : 3, "name" : "X_Men" }
+> ^C
+bye
+
+C:\Users\Pravin>
+
+C:\Users\Pravin>
+
+C:\Users\Pravin>
+________________________________________________________________________________________
+after terminate database
+C:\Users\Pravin>mongo
+'mongo' is not recognized as an internal or external command,
+operable program or batch file.
+
+C:\Users\Pravin>set path=D:\Rigved Technologies\mongodb-win32-x86_64-windows-5.0.6\bin;%path%
+
+
+> show dbs
+activity  0.000GB
+admin     0.000GB
+config    0.000GB
+local     0.000GB
+> use activity
+switched to db activity
+> show collections
+activity
+counters
+> db.activity.find();
+{ "_id" : 1, "name" : "Wolverin" }
+{ "_id" : 2, "name" : "Deadpool" }
+{ "_id" : 3, "name" : "X_Men" }
+>
+

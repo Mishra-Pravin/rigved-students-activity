@@ -1,0 +1,96 @@
+> show dbs;
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use mydb
+switched to db mydb
+> db.createCollections('inventory')
+uncaught exception: TypeError: db.createCollections is not a function :
+@(shell):1:1
+> db.createCollection('inventory')
+{ "ok" : 1 }
+> show collections
+inventory
+
+> show dbs;
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+> use mydbp
+switched to db mydbp
+> db.createCollection('inventory');
+{ "ok" : 1 }
+> db.inventory.insertMany( [
+... { _id: 1, item: { name: "nut", code: "123" }, qty: 15, tags: [ "A", "B", "C" ] },
+... { _id: 2, item: { name: "bolt", code: "123" }, qty: 20, tags: [ "B" ] },
+... { _id: 3, item: { name: "screw", code: "406" }, qty: 25, tags: [ "A", "B" ] },
+... { _id: 4, item: { name: "chain", code: "756" }, qty: 30, tags: [ "B", "A" ] },
+... { _id: 5, item: { name: "washers", code: "120" }, qty: 20, tags: [ [ "A", "B" ], "C" ] }
+... ]);
+{ "acknowledged" : true, "insertedIds" : [ 1, 2, 3, 4, 5 ] }
+
+> db.inventory.find();
+{ "_id" : 1, "item" : { "name" : "nut", "code" : "123" }, "qty" : 15, "tags" : [ "A", "B", "C" ] }
+{ "_id" : 2, "item" : { "name" : "bolt", "code" : "123" }, "qty" : 20, "tags" : [ "B" ] }
+{ "_id" : 3, "item" : { "name" : "screw", "code" : "406" }, "qty" : 25, "tags" : [ "A", "B" ] }
+{ "_id" : 4, "item" : { "name" : "chain", "code" : "756" }, "qty" : 30, "tags" : [ "B", "A" ] }
+{ "_id" : 5, "item" : { "name" : "washers", "code" : "120" }, "qty" : 20, "tags" : [ [ "A", "B" ], "C" ] }
+> db.inventory.find({qty:{$lt:25}})
+{ "_id" : 1, "item" : { "name" : "nut", "code" : "123" }, "qty" : 15, "tags" : [ "A", "B", "C" ] }
+{ "_id" : 2, "item" : { "name" : "bolt", "code" : "123" }, "qty" : 20, "tags" : [ "B" ] }
+{ "_id" : 5, "item" : { "name" : "washers", "code" : "120" }, "qty" : 20, "tags" : [ [ "A", "B" ], "C" ] }
+> db.inventory.find({qty:{$lte:20}})
+{ "_id" : 1, "item" : { "name" : "nut", "code" : "123" }, "qty" : 15, "tags" : [ "A", "B", "C" ] }
+{ "_id" : 2, "item" : { "name" : "bolt", "code" : "123" }, "qty" : 20, "tags" : [ "B" ] }
+{ "_id" : 5, "item" : { "name" : "washers", "code" : "120" }, "qty" : 20, "tags" : [ [ "A", "B" ], "C" ] }
+> db.inventory.find({qty:{$lte:15}})
+{ "_id" : 1, "item" : { "name" : "nut", "code" : "123" }, "qty" : 15, "tags" : [ "A", "B", "C" ] }
+> db.inventory.find({qty:{$in:[15,25]}})
+{ "_id" : 1, "item" : { "name" : "nut", "code" : "123" }, "qty" : 15, "tags" : [ "A", "B", "C" ] }
+{ "_id" : 3, "item" : { "name" : "screw", "code" : "406" }, "qty" : 25, "tags" : [ "A", "B" ] }
+> db.inventory.find({qty:{$gte:21}})
+{ "_id" : 3, "item" : { "name" : "screw", "code" : "406" }, "qty" : 25, "tags" : [ "A", "B" ] }
+{ "_id" : 4, "item" : { "name" : "chain", "code" : "756" }, "qty" : 30, "tags" : [ "B", "A" ] }
+> db.inventory.find({qty:{$not:{$gte:21}}})
+{ "_id" : 1, "item" : { "name" : "nut", "code" : "123" }, "qty" : 15, "tags" : [ "A", "B", "C" ] }
+{ "_id" : 2, "item" : { "name" : "bolt", "code" : "123" }, "qty" : 20, "tags" : [ "B" ] }
+{ "_id" : 5, "item" : { "name" : "washers", "code" : "120" }, "qty" : 20, "tags" : [ [ "A", "B" ], "C" ] }
+> db.inventory.find({qty:{$not:{$lte:21}}})
+{ "_id" : 3, "item" : { "name" : "screw", "code" : "406" }, "qty" : 25, "tags" : [ "A", "B" ] }
+{ "_id" : 4, "item" : { "name" : "chain", "code" : "756" }, "qty" : 30, "tags" : [ "B", "A" ] }
+> db.inventory.find({qty:{$nin:[15,25]}})
+{ "_id" : 2, "item" : { "name" : "bolt", "code" : "123" }, "qty" : 20, "tags" : [ "B" ] }
+{ "_id" : 4, "item" : { "name" : "chain", "code" : "756" }, "qty" : 30, "tags" : [ "B", "A" ] }
+{ "_id" : 5, "item" : { "name" : "washers", "code" : "120" }, "qty" : 20, "tags" : [ [ "A", "B" ], "C" ] }
+> db.inventory.find({$where:function(){return(this.qty==this.qty)}})
+{ "_id" : 1, "item" : { "name" : "nut", "code" : "123" }, "qty" : 15, "tags" : [ "A", "B", "C" ] }
+{ "_id" : 2, "item" : { "name" : "bolt", "code" : "123" }, "qty" : 20, "tags" : [ "B" ] }
+{ "_id" : 3, "item" : { "name" : "screw", "code" : "406" }, "qty" : 25, "tags" : [ "A", "B" ] }
+{ "_id" : 4, "item" : { "name" : "chain", "code" : "756" }, "qty" : 30, "tags" : [ "B", "A" ] }
+{ "_id" : 5, "item" : { "name" : "washers", "code" : "120" }, "qty" : 20, "tags" : [ [ "A", "B" ], "C" ] }
+> db.inventory.find({$where:function(){return(this.20==this.20)}})
+uncaught exception: SyntaxError: missing ) in parenthetical :
+@(shell):1:48
+> db.inventory.find({$where:function(){return(this.qty:20==this.qty:20)}})
+uncaught exception: SyntaxError: missing ) in parenthetical :
+@(shell):1:52
+> db.inventory.find({$where:function(){return(obj.qty==obj.qty)}})
+{ "_id" : 1, "item" : { "name" : "nut", "code" : "123" }, "qty" : 15, "tags" : [ "A", "B", "C" ] }
+{ "_id" : 2, "item" : { "name" : "bolt", "code" : "123" }, "qty" : 20, "tags" : [ "B" ] }
+{ "_id" : 3, "item" : { "name" : "screw", "code" : "406" }, "qty" : 25, "tags" : [ "A", "B" ] }
+{ "_id" : 4, "item" : { "name" : "chain", "code" : "756" }, "qty" : 30, "tags" : [ "B", "A" ] }
+{ "_id" : 5, "item" : { "name" : "washers", "code" : "120" }, "qty" : 20, "tags" : [ [ "A", "B" ], "C" ] }
+> db.inventory.find({$where:function(){return(obj.nut==bolt.qty)}})
+Error: error: {
+        "ok" : 0,
+        "errmsg" : "Executor error during find command :: caused by :: ReferenceError: bolt is not defined :\n@:1:13\n",
+        "code" : 139,
+        "codeName" : "JSInterpreterFailure"
+}
+> db.inventory.find({$where:function(){return(qty.20==qty.20)}})
+uncaught exception: SyntaxError: missing ) in parenthetical :
+@(shell):1:47
+> db.inventory.find({qty:{$exists:true,$nin:[15,25]}})
+{ "_id" : 2, "item" : { "name" : "bolt", "code" : "123" }, "qty" : 20, "tags" : [ "B" ] }
+{ "_id" : 4, "item" : { "name" : "chain", "code" : "756" }, "qty" : 30, "tags" : [ "B", "A" ] }
+{ "_id" : 5, "item" : { "name" : "washers", "code" : "120" }, "qty" : 20, "tags" : [ [ "A", "B" ], "C" ] }
