@@ -1,0 +1,26 @@
+<p align="center" class="p-3 mb-2 bg-secondary text-white">Data-Binding Activity</p>
+<div align="center" class="p-3 mb-2 bg-secondary text-white">
+Firstname:<input type="text" #first ><br/>
+Lasttname:<input type="text" #last ><br/>
+<button (click) = "store(first.value,last.value)">Save</button>
+
+<div align="center" >
+    <table class="table table-sm table-dark">
+        <thead class="table table-sm table-dark">
+          <tr>
+            <th scope="col" >Firstname</th>
+            <th scope="col">Lastname</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            
+            <td class="text-danger">{{firstname}}</td>
+            <td class="text-danger">{{lastname}}</td>
+            
+          </tr>
+        </tbody>
+      </table>
+</div>
+</div>
+
