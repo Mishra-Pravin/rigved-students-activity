@@ -1,0 +1,21 @@
+<p>pipe-demo works!</p>
+<div >
+    <table>
+        <thead>
+            <tr>
+                <th>NAME</th>
+                <th>GENDER</th>
+                <th>STATE</th>
+                <th>CITY</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let x of users">
+                <td>{{x.name | person: x.gender}}</td>
+                <td>{{x.gender}}</td>
+                <td>{{x.address.state}}</td>
+                <td>{{x.address.city}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
