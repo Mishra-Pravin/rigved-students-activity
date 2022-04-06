@@ -1,0 +1,46 @@
+<p>binding-activity works!</p>
+<div >
+    <table *ngIf = "students" border ='5' class="table " >
+    
+            
+            
+        <thead>
+            <th>RollNo</th><th>Name</th><th>Marks</th>
+           
+        </thead>
+        <tbody>
+            <tr *ngFor="let result of students" [ngClass]="{'green':result.marks <= 50, 
+                            'yellow':result.marks >='50'}">
+                <td>{{result.RollNo}} </td><td>{{result.Name}} </td><td>{{result.marks}} </td>
+            </tr>
+        </tbody>
+    </table>
+    <p>
+        All <span [ngClass]="'green'">the fail students are colored red</span>, All <span class="yellow">the passed students are colored Grey</span>
+      </p>
+</div>
+
+<div class="container-fluid">
+    <h1>Inventory</h1>
+    <table class="table table-dark">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Brand</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let stock of stocks">
+                <tr>
+                    <td [attr.rowspan]="stock.brand.length">{{stock.name}}</td>
+                    <td>{{stock.brand[0]}}</td>
+                </tr>
+                <ng-container *ngFor="let brand of stock.brand; let i=index;">
+                    <tr *ngIf="i!=0">
+                        <td>{{brand}}</td>
+                    </tr>
+                </ng-container>
+            </ng-container>
+        </tbody>
+    </table>
+</div>
