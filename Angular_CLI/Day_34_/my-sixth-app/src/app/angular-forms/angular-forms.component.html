@@ -1,0 +1,103 @@
+<DIV >
+    <form #login="ngForm" (ngSubmit)="formSubmit(login.value)" autocomplete="off">
+        <h1 align="center" class="text-red mb-4">User Registration</h1>
+        <div class="card" style="border-radius: 15px;">
+            <div class="card-body">
+                <div class="row align-items-center pt-4 pb-3" autocomplete="off">
+                    <div class="col-md-3 ps-5" autocomplete="off">
+                        <h6 class="mb-0" autocomplete="off">FirstName </h6>
+                    </div>
+                    <div class="col-md-9 pe-5" autocomplete="off">
+                        <input type="text" class="form-control form-control-lg" name="FirstName" ngModel #VF1="ngModel"
+                            autocomplete="off" required minlength="3" />
+                        <span [hidden]="VF1.valid || VF1.pristine" class="text-danger">First name must be greater than
+                            and equal to 3</span>
+                    </div>
+                </div>
+                <hr class="mx-n3">
+                <div class="row align-items-center pt-4 pb-3">
+                    <div class="col-md-3 ps-5">
+                        <h6 class="mb-0">LastName</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+
+                        <input type="text" class="form-control form-control-lg" name="LastName" ngModel #VF2="ngModel"
+                            autocomplete="off" required minlength="3" />
+                        <span [hidden]="VF2.valid || VF2.pristine" class="text-danger">Last name must be greater than
+                            and equal to 3</span>
+                    </div>
+                </div>
+                <hr class="mx-n3">
+                <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                        <h6 class="mb-0">Gender</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                        <input type="radio" name="Gender" value="Male" ngModel #VF3="ngModel" required minlength="3">
+                        Male
+                        <input type="radio" name="Gender" value="Female" ngModel #VF3="ngModel" required> Female
+                        <input type="radio" name="Gender" value="other" ngModel #VF3="ngModel" required> other
+                        <br><span [hidden]=" VF3.valid || VF3.pristine" class="text-danger">Gender selection
+                            require</span>
+                    </div>
+                </div>
+                <!--  -->
+                <hr class="mx-n3">
+
+                <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+                        <h6 class="mb-0">Skill</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                        <input type="checkbox" name="Skill" value="Java" ngModel #VF4="ngModel" required> Java
+                        <input type="checkbox" name="Skill" value="C" ngModel #VF4="ngModel" required> C
+                        <input type="checkbox" name="Skill" value="C++" ngModel #VF4="ngModel" required> C++
+                        <input type="checkbox" name="Skill" value="Python" ngModel #VF4="ngModel" required> Python
+                        <br><span [hidden]="VF4.valid || VF4.pristine" class="text-danger">Selection require</span>
+                    </div>
+                </div>
+                <!--  -->
+                <hr class="mx-n3">
+
+                <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+
+                        <h6 class="mb-0">Qualification</h6>
+
+                    </div>
+                    <div class="col-md-9 pe-5">
+                        <select name="Qualification" ngModel #VF5="ngModel" required>
+                            <!-- <option name="qn" value="BE">Select</option> -->
+                            <option name="Qualification" value="BE">BE</option>
+                            <option name="Qualification" value="MBA">MBA</option>
+                            <option name="Qualification" value="M.TECH">M.TECH</option>
+                        </select><br>
+                    </div>
+                </div>
+                <!--  -->
+                <hr class="mx-n3">
+
+                <div class="row align-items-center py-3">
+                    <div class="col-md-3 ps-5">
+
+                        <h6 class="mb-0">Address</h6>
+                    </div>
+                    <div class="col-md-9 pe-5">
+                        <textarea class="form-control" rows="2" name="Address" ngModel #VF6="ngModel" required
+                            minlength="3"></textarea>
+                        <span [hidden]="VF6.valid || VF6.pristine" class="text-danger">Input is mandatory</span>
+                    </div>
+                </div>
+                <!--  -->
+                <hr class="mx-n3">
+                <div class="px-5 py-4" align="center">
+                    <input type="submit" class="btn btn-primary btn-lg" name="an" value="Register" [disabled]="login.pristine || login.invalid">
+                    
+                </div>
+            </div>
+        </div>
+    </form>
+    <div align="center" [hidden]="login.invalid">
+        <p>Form Data: {{login.value | json }}</p>
+    </div>
+</DIV> 
