@@ -1,0 +1,24 @@
+<p>mdf-demo works!</p>
+<div>
+    <h2>Model Driven Form activity</h2>
+    <div>
+        <label >
+            <p>Firstname: <input [formControl]="firstname"></p>
+        <p>Lastname: <input [formControl]="lastname"></p>
+
+        </label>
+        
+    </div>
+    <hr>
+    <div>
+        <p> {{firstname | json}}</p>
+        <p> {{lastname | json}}</p>
+    </div>
+    <hr>
+    <div>
+        <p>Firstname Value: {{firstname.value}}</p>
+        <p>Lastname Value: {{lastname.value}}</p>
+
+    </div>
+    
+</div>
