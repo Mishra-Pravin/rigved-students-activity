@@ -1,0 +1,12 @@
+<div>
+
+    <div>
+        Id: <input type="number" [formControl]="_id">
+    </div>
+    <br>
+    <input type="submit" value="Delete" (click)="handleGet(_id.value)">
+
+    <div>
+        <p *ngIf="user">{{user | json}}</p>
+    </div>
+</div>
