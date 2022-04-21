@@ -1,0 +1,29 @@
+
+<div>
+    <div>
+        <table class="table table-dark text-center"> 
+            <thead>
+                <tr align="center">
+                    <th rowspan="1" >UserId</th><th rowspan="1">Product Name</th><th rowspan="1">SKU</th>
+                    <th rowspan="1">Description</th><th>Price</th>
+                    <th colspan="1">Stock Level</th>
+                </tr>
+               
+            </thead>
+            <tbody *ngIf="users">
+                <tr *ngFor="let user of users" style="text-align: center;"> 
+                    <td>{{user._id}}</td>
+                    <td>{{user.Product_Name}}</td>
+                    <td>{{user.SKU}}</td>
+                    <td>{{user.Description}}</td>
+                    <td>{{user.Price}}</td>
+                    <td>{{user.Stock_Level}}</td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div align="center">
+    <button (click) = "handleClick()" class="btn btn-success">Show</button>
+</div>
